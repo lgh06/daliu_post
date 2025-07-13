@@ -1,4 +1,10 @@
 .DS_Store
+
+browserDataDirChromeBeta/
+browserDataDirChromeBetaOversea/
+
+node_modules/
+
 # Logs
 logs
 *.log
