@@ -4,6 +4,7 @@ import * as providers from './auto/providers/index.mjs';
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 const port = 3047;
 
 app.get('/providers', (req, res) => {
@@ -11,18 +12,18 @@ app.get('/providers', (req, res) => {
 });
 
 Object.keys(providers).forEach((providerName) => {
-  app.get(`/${providerName}`, async (req, res) => {
+  app.post(`/${providerName}`, async (req, res) => {
     
     let paramKeyArr = providers[providerName]?.params?.split(",");
     let paramObj = {};
     
     paramKeyArr?.forEach((key) => {
-      paramObj[key] = req.query?.[key] || String(Date.now());
+      paramObj[key] = req.body[key] || String(Date.now());
     })
     
     // 暂不加 await 也可以正常执行
     providers[providerName]?.main(paramObj);
-    res.send('Hello World!');
+    res.json({msg:"ok"});
   });
 });
 
