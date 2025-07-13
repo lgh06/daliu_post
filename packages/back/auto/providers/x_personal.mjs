@@ -2,12 +2,13 @@
 import puppeteer from 'puppeteer-core';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { dirname , join} from 'path';
 import { autoCommons } from '../autoCommons.mjs'
 
 // 获取当前文件的目录路径
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const __backDirName = join( __dirname, "../", "../")
 
 
 let { getNewBrowserTab,wait, basicLauchOptions } = autoCommons;
@@ -18,7 +19,7 @@ let socks = "socks5://localhost:3721"
 if(socks){
   options.args.push(`--proxy-server=${socks}`)
 }
-options.userDataDir = "browserDataDirChromeBetaOversea"
+options.userDataDir = __backDirName + "/browserDataDirChromeBetaOversea"
 
 // dns  https://8.8.8.8/dns-query{?dns}
 
@@ -40,10 +41,10 @@ async function main({content="222"}) {
     //  以下代码，仅在x个人号上测试通过。其它账号类型不保证有效。
 
     // 等待 文本输入框 出现
-    await page.waitForSelector('div[data-testid]="tweetTextarea_0RichTextInputContainer"',{timeout:0});
+    await page.waitForSelector('div[data-testid="tweetTextarea_0RichTextInputContainer"]',{timeout:0});
 
     // 点击 文本输入框
-    await page.click('div[data-testid]="tweetTextarea_0RichTextInputContainer"');
+    await page.click('div[data-testid="tweetTextarea_0RichTextInputContainer"]');
     await wait(2000)
     await page.keyboard.sendCharacter(content)
 
