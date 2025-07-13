@@ -1,10 +1,19 @@
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+// 获取当前文件的目录路径
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const __backDirName = join( __dirname, "../")
+
 // 启动浏览器配置
 /**
  * @type {import('puppeteer-core').LaunchOptions}
  */
 let basicLauchOptions = {
   executablePath: '/Applications/Google Chrome Beta.app/Contents/MacOS/Google\ Chrome\ Beta', // macOS Chrome Beta路径
-  userDataDir: 'browserDataDirChromeBeta',
+  userDataDir: __backDirName + '/browserDataDirChromeBeta',
   headless: false,
   defaultViewport: null,
   timeout: 0,
