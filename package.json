@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "back": "npm run dev --workspace=packages/back",
-    "dev": "concurrently \"npm run back\" \"npm run dev --workspace=packages/front\""
+    "dev": "concurrently --kill-others \"npm run back\" \"npm run dev --workspace=packages/front\""
   },
   "author": "",
   "license": "ISC",

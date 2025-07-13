@@ -7,9 +7,10 @@ let { wait } = autoCommons;
 
 
 async function main({title="111",content="222"}) {
-  let browser = await puppeteer.launch({
+  let browser = global.browser || await puppeteer.launch({
     ...autoCommons.basicLauchOptions
   });
+  global.browser = browser;
   /**
    * @type {import('puppeteer-core').Page}
    */
@@ -60,7 +61,7 @@ async function main({title="111",content="222"}) {
 let toutiao_personal = {
   main,
   path: "toutiao_personal",
-  desc: "头条-个人",
+  desc: "头条-个人-文章",
   params: "title,content"
 }
 

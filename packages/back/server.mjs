@@ -50,6 +50,11 @@ Object.keys(providers).forEach((providerName) => {
   if(providerName.startsWith("__")) return;
   app.post(`/${providerName}`, async (req, res) => {
 
+    if(global.browser){
+      await global.browser.close();
+      delete global.browser;
+    }
+
     let paramKeyArr = providers[providerName]?.params?.split(",");
     let paramObj = {};
 

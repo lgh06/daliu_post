@@ -14,9 +14,10 @@ let { getNewBrowserTab,wait, basicLauchOptions } = autoCommons;
 
 
 async function main({title="111", content="222"}) {
-  let browser = await puppeteer.launch({
+  let browser = global.browser || await puppeteer.launch({
     ...basicLauchOptions,
   });
+  global.browser = browser;
   /**
    * @type {import('puppeteer-core').Page}
    */
@@ -97,7 +98,7 @@ async function main({title="111", content="222"}) {
 let weixin_dingyue_personal = {
   main,
   path: "weixin_dingyue_personal",
-  desc: "微信订阅号-个人",
+  desc: "微信订阅号-个人-图文",
   params: "title,content"
 }
 
