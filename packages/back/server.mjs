@@ -9,6 +9,10 @@ app.use(cors());
 app.use(express.json());
 const port = 3047;
 
+app.get('/', (req, res) => {
+  res.send('see /providers');
+});
+
 app.get('/providers', (req, res) => {
   let genMachinecode = () => {
     let machineCode = "";
