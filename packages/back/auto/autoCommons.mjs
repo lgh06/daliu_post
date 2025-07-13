@@ -20,7 +20,8 @@ let basicLauchOptions = {
   args: [
     `--window-size=1680,900`
   ],
-  ignoreDefaultArgs: ['--enable-automation']
+  ignoreDefaultArgs: ['--enable-automation'],
+  enableExtensions: true,
 };
 
 let wait = (ms=5000) => new Promise(resolve => setTimeout(resolve, ms))
