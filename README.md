@@ -16,7 +16,7 @@ Chrome Beta https://www.google.cn/chrome/beta/?standalone=1
 npm install  
 # 修改浏览器二进制文件路径  
 `packages/back/auto/autoCommons.mjs` 内，将浏览器的二进制可执行文件的路径，设置正确。  
-MacOS Chrome Beta： `'/Applications/Google Chrome Beta.app/Contents/MacOS/Google\ Chrome\ Beta'`
+MacOS Chrome Beta： `'/Applications/Google Chrome Beta.app/Contents/MacOS/Google\ Chrome\ Beta'`  
 Windows Chrome Beta： `'C:/Program Files/Google/Chrome Beta/Application/chrome.exe'`  
 # providers  
 packages/back/auto/providers 目录下的文件，某些行可能也需要修改。  
