@@ -17,6 +17,7 @@ let options = Object.assign({}, basicLauchOptions)
 let socks = "socks5://localhost:3721"
 
 if(socks){
+  options.args = basicLauchOptions.args.slice();
   options.args.push(`--proxy-server=${socks}`)
 }
 options.userDataDir = __packagesDirName + "/browserDataDirChromeBetaOversea"
