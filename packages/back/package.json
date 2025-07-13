@@ -1,0 +1,17 @@
+{
+  "name": "back",
+  "version": "0.0.1",
+  "main": "server.mjs",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "puppeteer-core": "^24.12.1"
+  }
+}

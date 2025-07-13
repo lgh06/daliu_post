@@ -1,0 +1,15 @@
+{
+  "name": "daliu_post",
+  "version": "0.0.1",
+  "description": "大刘的自媒体自动化工具。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "packages/back",
+    "packages/front"
+  ]
+}
