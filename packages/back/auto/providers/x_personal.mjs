@@ -8,7 +8,7 @@ import { autoCommons } from '../autoCommons.mjs'
 // 获取当前文件的目录路径
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const __backDirName = join( __dirname, "../", "../")
+const __packagesDirName = join( __dirname, "../", "../", "../" )
 
 
 let { getNewBrowserTab,wait, basicLauchOptions } = autoCommons;
@@ -19,7 +19,7 @@ let socks = "socks5://localhost:3721"
 if(socks){
   options.args.push(`--proxy-server=${socks}`)
 }
-options.userDataDir = __backDirName + "/browserDataDirChromeBetaOversea"
+options.userDataDir = __packagesDirName + "/browserDataDirChromeBetaOversea"
 
 // dns  https://8.8.8.8/dns-query{?dns}
 

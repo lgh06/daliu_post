@@ -5,7 +5,7 @@ import { dirname, join } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const __backDirName = join( __dirname, "../")
+const __packagesDirName = join( __dirname, "../", "../" );
 
 // 启动浏览器配置
 /**
@@ -13,7 +13,7 @@ const __backDirName = join( __dirname, "../")
  */
 let basicLauchOptions = {
   executablePath: '/Applications/Google Chrome Beta.app/Contents/MacOS/Google\ Chrome\ Beta', // macOS Chrome Beta路径
-  userDataDir: __backDirName + '/browserDataDirChromeBeta',
+  userDataDir: __packagesDirName + '/browserDataDirChromeBeta',
   headless: false,
   defaultViewport: null,
   timeout: 0,
