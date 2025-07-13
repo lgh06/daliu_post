@@ -2,7 +2,7 @@
 import puppeteer from 'puppeteer-core';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { dirname, join } from 'path';
 import { autoCommons } from '../autoCommons.mjs'
 
 // 获取当前文件的目录路径
