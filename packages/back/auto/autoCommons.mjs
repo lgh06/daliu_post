@@ -2,7 +2,7 @@
 /**
  * @type {import('puppeteer-core').LaunchOptions}
  */
-const basicLauchOptions = {
+let basicLauchOptions = {
   executablePath: '/Applications/Google Chrome Beta.app/Contents/MacOS/Google\ Chrome\ Beta', // macOS Chrome Beta路径
   userDataDir: 'browserDataDirChromeBeta',
   headless: false,
