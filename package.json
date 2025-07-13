@@ -5,12 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "back": "npm run dev --workspace=packages/back"
+    "back": "npm run dev --workspace=packages/back",
+    "dev": "concurrently \"npm run back\" \"npm run dev --workspace=packages/front\""
   },
   "author": "",
   "license": "ISC",
   "workspaces": [
     "packages/back",
     "packages/front"
-  ]
+  ],
+  "dependencies": {
+    "concurrently": "^9.2.0"
+  }
 }

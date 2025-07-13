@@ -1,0 +1,69 @@
+---
+// @ts-nocheck
+---
+
+<main>
+	<div class="line">
+		请输入标题 可以省略 <br>
+		<textarea name="title" id="title"></textarea>
+	</div>
+	<div class="line">
+		请输入内容 必填 <br>
+		<textarea name="content" id="content"></textarea>
+	</div>
+  <div class="line buttons">
+    <button style="display:none"></button>
+  </div>
+	
+</main>
+
+<style scoped lang="scss" is:inline>
+
+	main {
+		height: 100%;
+    width: 90%;
+    margin: 0 auto;
+    font-size: 24px;
+	}
+  textarea {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    font-size: 24px;
+    line-height: 1.5;
+    &#title{
+      min-height: 60px;
+    }
+    &#content{
+      min-height: 200px;
+    }    
+  }
+  .buttons button{
+    display: inline-block;
+    &:not(:first-of-type):not(:nth-of-type(2)){
+      margin-left: 5px;
+    }
+  }
+</style>
+<script>
+  // @ts-nocheck
+  async function main() {
+    let providers = await fetch("http://localhost:3047/providers").then(res => res.json());
+    console.log(providers)
+    Object.keys(providers).forEach(providerName => {
+      let button = document.createElement("button");
+      button.innerText = providers[providerName].desc;
+      button.onclick = () => {
+        let title = document.querySelector("#title").value;
+        let content = document.querySelector("#content").value;
+        window.open("http://localhost:3047" + "/" + providers[providerName].path
+          + "?title=" + encodeURIComponent(title)
+          + "&content=" + encodeURIComponent(content)
+        );
+      }
+      document.querySelector(".buttons").appendChild(button);
+    });
+  }
+
+  main();
+</script>

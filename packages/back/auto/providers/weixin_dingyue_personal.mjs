@@ -94,5 +94,12 @@ async function main({title="111", content="222"}) {
 // })
 
 
-export { main as weixin_dingyue_personal, main as default }
+let weixin_dingyue_personal = {
+  main,
+  path: "weixin_dingyue_personal",
+  desc: "微信订阅号-个人",
+  params: "title,content"
+}
+
+export { weixin_dingyue_personal }
 

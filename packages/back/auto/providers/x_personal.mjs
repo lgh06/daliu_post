@@ -67,6 +67,13 @@ async function main({content="222"}) {
 //   content: "你好，我是程序员 这里是内容 测试测试",
 // })
 
+let x_personal = {
+  main,
+  path: "x_personal",
+  desc: "X-个人",
+  params: "content"
+}
 
-export { main as x_personal, main as default }
+
+export { x_personal }
 
