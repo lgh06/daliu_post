@@ -13,8 +13,8 @@
 # 语言  
 Node.js V22  
 https://nodejs.org/zh-cn/download    
-> 镜像地址 https://registry.npmmirror.com/binary.html?path=node/v22.17.0/  
-> windows建议使用 node-v22.17.0-x64.msi ， macOS建议使用 node-v22.17.0.pkg  
+> 镜像地址 https://registry.npmmirror.com/binary.html?path=node/v22.17.1/  
+> windows建议使用 node-v22.17.1-x64.msi ， macOS建议使用 node-v22.17.1.pkg  
 # 额外依赖  
 Chrome Beta https://www.google.cn/chrome/beta/?standalone=1  
 # 安装  
@@ -30,7 +30,7 @@ npm run dev
 # 浏览器打开  
 http://localhost:4321  
 
-
+# 其它
 > 有空研究一下ProseMirror，头条和订阅号都使用了这个富文本编辑器。  
 
 > https://developers.weixin.qq.com/doc/subscription/guide/product/mp_editor_jsapi.html  
