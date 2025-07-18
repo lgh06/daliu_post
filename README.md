@@ -5,7 +5,7 @@
 > 微信 mudguy  
 
 有钱的大佬请出门右转，[新榜小豆芽](https://d.newrank.cn/)  
-代码 已经在 https://cnb.cool/lgh06/daliu_post 开源。  
+源码镜像 https://cnb.cool/lgh06/daliu_post  
 # 免责声明  
 本工具没有逆向、没有反编译、没有破解，只是单纯的模拟用户操作。  
 本工具仅用于学习、研究、测试，不得用于任何商业用途。  
