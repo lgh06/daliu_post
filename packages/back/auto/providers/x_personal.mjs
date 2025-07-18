@@ -70,7 +70,6 @@ async function main({content="222"}) {
 
 let x_personal = {
   main,
-  path: "x_personal",
   desc: "X-个人",
   params: "content"
 }

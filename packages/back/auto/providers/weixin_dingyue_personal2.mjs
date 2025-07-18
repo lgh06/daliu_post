@@ -99,7 +99,6 @@ async function main({title="111", content="222"}) {
 
 let weixin_dingyue_personal2 = {
   main,
-  path: "weixin_dingyue_personal2",
   desc: "微信订阅号-个人-图文-账号2",
   params: "title,content"
 }

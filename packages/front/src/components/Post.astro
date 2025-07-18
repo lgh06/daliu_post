@@ -46,19 +46,19 @@
 <script>
   // @ts-nocheck
   async function main() {
-    let providers = await fetch("http://localhost:3047/providers").then((res) =>
+    let providersJsonObj = await fetch("http://localhost:3047/providers").then((res) =>
       res.json(),
     );
-    console.log(providers);
-    Object.keys(providers).forEach((providerName) => {
+    console.log(providersJsonObj);
+    Object.keys(providersJsonObj).forEach((providerName) => {
       if(providerName.startsWith("__")) return;
       let button = document.createElement("button");
-      button.innerText = providers[providerName].desc;
+      button.innerText = providersJsonObj[providerName].desc;
       button.onclick = () => {
         let title = document.querySelector("#title").value;
         let content = document.querySelector("#content").value;
 
-        fetch(`http://localhost:3047/${providers[providerName].path}`, {
+        fetch(`http://localhost:3047/${providerName}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
