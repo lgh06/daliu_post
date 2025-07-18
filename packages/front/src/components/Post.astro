@@ -45,18 +45,34 @@
 </style>
 <script>
   // @ts-nocheck
+  async function revertTextarea() {
+    let textareaEleArr = document.querySelectorAll("textarea");
+    Array.from(textareaEleArr).forEach((textareaEle, i) => {
+      let v = localStorage.getItem("$$textarea$$" + i);
+      if (v) {
+        textareaEle.value = v;
+      }
+    });
+  }
   async function main() {
-    let providersJsonObj = await fetch("http://localhost:3047/providers").then((res) =>
-      res.json(),
+    let providersJsonObj = await fetch("http://localhost:3047/providers").then(
+      (res) => res.json(),
     );
     console.log(providersJsonObj);
     Object.keys(providersJsonObj).forEach((providerName) => {
-      if(providerName.startsWith("__")) return;
+      if (providerName.startsWith("__")) return;
       let button = document.createElement("button");
       button.innerText = providersJsonObj[providerName].desc;
       button.onclick = () => {
         let title = document.querySelector("#title").value;
         let content = document.querySelector("#content").value;
+        // save textarea value to localStorage
+        let textareaEleArr = document.querySelectorAll("textarea");
+        Array.from(textareaEleArr).forEach((textareaEle, i) => {
+          if (textareaEle.value) {
+            localStorage.setItem("$$textarea$$" + i, textareaEle.value);
+          }
+        });
 
         fetch(`http://localhost:3047/${providerName}`, {
           method: "POST",
@@ -86,4 +102,6 @@
   }
 
   main();
+
+  revertTextarea();
 </script>
