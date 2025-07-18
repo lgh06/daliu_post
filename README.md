@@ -29,3 +29,6 @@ packages/back/auto/providers 目录下的文件，某些行可能也需要修改
 npm run dev  
 # 浏览器打开  
 http://localhost:4321  
+
+
+> 有空研究一下ProseMirror，头条和订阅号都使用了这个富文本编辑器。  
