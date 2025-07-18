@@ -18,9 +18,9 @@ export function writeProviderIndex() {
     } catch (writeError) {
       console.error(`清空 ${indexmjs} 文件内容时出错:`, writeError);
     }
-    console.log('读取到的文件:', files);
     files.forEach(v => {
       if (v.endsWith('.mjs') && v !== 'index.mjs') {
+        console.log('读取到provider: ', v);
         const exportLine = `export * from './${v}';\n`;
         try {
           fs.appendFileSync(join(__dirname, providersDir, 'index.mjs'), exportLine);
