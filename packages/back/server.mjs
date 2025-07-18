@@ -1,8 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 // import * as providers from './auto/providers/index.mjs';
+import { writeProviderIndex } from './auto/writeProviderIndex.mjs';
 import { networkInterfaces } from 'os';
 import { Buffer } from 'buffer';
+
+writeProviderIndex();
 
 const app = express();
 app.use(cors());
@@ -47,7 +50,7 @@ app.get('/providers', async (req, res) => {
 });
 
 import('./auto/providers/index.mjs').then((providers) => {
-  
+
   Object.keys(providers).forEach((providerName) => {
     if(providerName.startsWith("__")) return;
     app.post(`/${providerName}`, async (req, res) => {
