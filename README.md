@@ -32,3 +32,6 @@ http://localhost:4321
 
 
 > 有空研究一下ProseMirror，头条和订阅号都使用了这个富文本编辑器。  
+
+> https://developers.weixin.qq.com/doc/subscription/guide/product/mp_editor_jsapi.html  
+> https://developers.weixin.qq.com/doc/service/guide/product/mp_editor_jsapi.html  
