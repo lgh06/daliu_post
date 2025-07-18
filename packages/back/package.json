@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node server.mjs",
-    "start": "node server.mjs"
+    "start": "node server.mjs",
+    "min": "terser ./auto/providers/toutiao_personal.mjs --compress --mangle --module -o ./auto/providers/toutiao_personal_min.mjs"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +15,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "puppeteer-core": "^24.12.1"
+    "puppeteer-core": "^24.12.1",
+    "terser": "^5.43.1"
   }
 }

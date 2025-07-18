@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "back": "npm run dev --workspace=packages/back",
-    "dev": "concurrently --kill-others-on-fail \"npm run back\" \"npm run dev --workspace=packages/front\" \"open http://localhost:4321 \""
+    "dev": "concurrently --kill-others-on-fail \"npm run back\" \"npm run dev --workspace=packages/front\" \"open http://localhost:4321 \"",
+    "min": "npm run min -w=packages/back"
   },
   "author": "",
   "license": "ISC",
