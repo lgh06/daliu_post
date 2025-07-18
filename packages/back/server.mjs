@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import * as providers from './auto/providers/index.mjs';
+// import * as providers from './auto/providers/index.mjs';
 import { networkInterfaces } from 'os';
 import { Buffer } from 'buffer';
 
@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
   res.send('see /providers');
 });
 
-app.get('/providers', (req, res) => {
+app.get('/providers', async (req, res) => {
   let genMachinecode = () => {
     let machineCode = "";
     // 获取第一个非内部网络接口的MAC地址
@@ -40,39 +40,44 @@ app.get('/providers', (req, res) => {
   }
 
   let result = {
-    ...providers,
+    ...await import('./auto/providers/index.mjs'),
     __machineCode: genMachinecode(),
   }
   res.json(result);
 });
 
-Object.keys(providers).forEach((providerName) => {
-  if(providerName.startsWith("__")) return;
-  app.post(`/${providerName}`, async (req, res) => {
-
-    if(global.browser){
-      await global.browser.close();
-      delete global.browser;
-    }
-
-    let paramKeyArr = providers[providerName]?.params?.split(",");
-    let paramObj = {};
-
-    paramKeyArr?.forEach((key) => {
-      paramObj[key] = req.body[key] || String(Date.now());
-    })
-
-    // 暂不加 await 也可以正常执行
-    providers[providerName]?.main(paramObj);
-    res.json({ msg: "ok" });
+import('./auto/providers/index.mjs').then((providers) => {
+  
+  Object.keys(providers).forEach((providerName) => {
+    if(providerName.startsWith("__")) return;
+    app.post(`/${providerName}`, async (req, res) => {
+  
+      if(global.browser){
+        await global.browser.close();
+        delete global.browser;
+      }
+  
+      let paramKeyArr = providers[providerName]?.params?.split(",");
+      let paramObj = {};
+  
+      paramKeyArr?.forEach((key) => {
+        paramObj[key] = req.body[key] || String(Date.now());
+      })
+  
+      // 暂不加 await 也可以正常执行
+      providers[providerName]?.main(paramObj);
+      res.json({ msg: "ok" });
+    });
   });
-});
+
+  app.listen(port, () => {
+    console.log(`API Backend Server running at http://localhost:${port}`);
+  });
+
+})
 
 
 
 
 
 
-app.listen(port, () => {
-  console.log(`API Backend Server running at http://localhost:${port}`);
-});
