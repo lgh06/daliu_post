@@ -5,7 +5,11 @@ import { writeProviderIndex } from './auto/writeProviderIndex.mjs';
 import { networkInterfaces } from 'os';
 import { Buffer } from 'buffer';
 
+let wait = (ms=1000) => new Promise((resolve) => {setTimeout(resolve, ms)})
+
 writeProviderIndex();
+
+// await wait();
 
 const app = express();
 app.use(cors());
