@@ -69,9 +69,7 @@
         // save textarea value to localStorage
         let textareaEleArr = document.querySelectorAll("textarea");
         Array.from(textareaEleArr).forEach((textareaEle, i) => {
-          if (textareaEle.value) {
-            localStorage.setItem("$$textarea$$" + i, textareaEle.value);
-          }
+          localStorage.setItem("$$textarea$$" + i, textareaEle.value || "");
         });
 
         fetch(`http://localhost:3047/${providerName}`, {
