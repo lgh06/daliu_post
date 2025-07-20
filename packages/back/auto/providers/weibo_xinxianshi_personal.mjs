@@ -5,7 +5,12 @@ let { wait } = autoCommons;
 
 
 
-async function main({title="111",content="222", headless=false}) {
+async function main({
+  title="111",
+  content="222", 
+  headless=false,
+  autoCommit=false,
+}) {
   let browser = global.browser || await puppeteer.launch({
     ...autoCommons.basicLauchOptions,
     headless,
@@ -30,6 +35,10 @@ async function main({title="111",content="222", headless=false}) {
     await wait()
     await page.keyboard.sendCharacter(content)
 
+    if(autoCommit) {
+      await wait()
+    }
+
 
 
     console.log("执行完毕 你需要自己点击 保存为草稿 按钮。")
@@ -52,7 +61,7 @@ async function main({title="111",content="222", headless=false}) {
 let weibo_xinxianshi_personal = {
   main,
   desc: "微博-个人-新鲜事",
-  params: ["content","headless"]
+  params: ["content","headless","autoCommit"]
 }
 
 

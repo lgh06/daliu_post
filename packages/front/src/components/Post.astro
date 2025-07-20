@@ -18,7 +18,7 @@
   </div>
   <div class="line checkboxes">
     <label>
-      <input type="checkbox" name="autocommit" id="autocommitcb" /> 自动提交与发表
+      <input type="checkbox" name="autoCommit" id="autoCommitcb" /> 自动提交与发表
     </label>
   </div>
   <div class="line buttons">
@@ -49,7 +49,6 @@
   .buttons button {
     display: inline-block;
     &:not(:nth-of-type(1)):not(:nth-of-type(2)) {
-    // &:not(:nth-of-type(1)) {
       margin-left: 5px;
     }
   }
@@ -57,11 +56,11 @@
 <script>
   // @ts-nocheck
   async function revertTextarea() {
-    let textareaEleArr = document.querySelectorAll("textarea");
-    Array.from(textareaEleArr).forEach((textareaEle, i) => {
-      let v = localStorage.getItem("$$textarea$$" + i);
+    let eleArr = document.querySelectorAll("textarea,input[type=checkbox]");
+    Array.from(eleArr).forEach((ele, i) => {
+      let v = localStorage.getItem(`$$${ele.tagName}$$${i}`);
       if (v) {
-        textareaEle.value = v;
+        ele.value = v;
       }
     });
   }
@@ -78,11 +77,11 @@
         let title = document.querySelector("#title").value;
         let content = document.querySelector("#content").value;
         let headless = document.querySelector("#headlesscb").checked;
-        let autocommit = document.querySelector("#autocommitcb").checked;
+        let autoCommit = document.querySelector("#autoCommitcb").checked;
         // save textarea value to localStorage
-        let textareaEleArr = document.querySelectorAll("textarea");
-        Array.from(textareaEleArr).forEach((textareaEle, i) => {
-          localStorage.setItem("$$textarea$$" + i, textareaEle.value || "");
+        let eleArr = document.querySelectorAll("textarea,input[type=checkbox]");
+        Array.from(eleArr).forEach((ele, i) => {
+          localStorage.setItem(`$$${ele.tagName}$$${i}`, ele.value || "");
         });
 
         fetch(`http://localhost:3047/${providerName}`, {
@@ -94,7 +93,7 @@
             title,
             content,
             headless,
-            autocommit,
+            autoCommit,
           }),
         })
           .then((response) => {
