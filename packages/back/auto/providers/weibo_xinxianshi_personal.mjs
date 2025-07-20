@@ -39,7 +39,7 @@ async function main({
 
     if(autoCommit) {
       await wait(20*1000)
-      await page.click(`div[class^=Tool_check] button[class^=Tool_button]`)
+      await page.click(`div[class^=Tool_check] button[class^=Tool_btn]`)
     }
 
 
