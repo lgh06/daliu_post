@@ -1,7 +1,6 @@
 // 微信公众号登录
 import puppeteer from 'puppeteer-core';
 import fs from 'fs';
-import { $ } from "zx";
 import { fileURLToPath } from 'url';
 import { dirname , join} from 'path';
 import { autoCommons } from '../autoCommons.mjs'
@@ -34,12 +33,6 @@ async function main({
   headless=false,
   autoCommit=false,
 }) {
-
-  let processCorpLink =  $`/Applications/CorpLink.app/Contents/MacOS/CorpLink`
-  processCorpLink.then( () => {
-    console.log("CorpLink 启动成功")
-  });
-  await wait(5000);
 
   let browser = global.browser || await puppeteer.launch({
     ...options,
@@ -76,15 +69,6 @@ async function main({
     
     
     console.log("执行完毕 你需要自己点击 保存为草稿 按钮。")
-    try {
-      await wait(30_000)
-      processCorpLink.nothrow(true).kill()
-    } catch (error) {
-      
-    }
-
-
-
 
   } catch (error) {
     console.error(error)
