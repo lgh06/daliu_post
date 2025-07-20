@@ -15,7 +15,14 @@ const __packagesDirName = join( __dirname, "../", "../", "../" )
 let { getNewBrowserTab,wait, basicLauchOptions } = autoCommons;
 
 let options = Object.assign({}, basicLauchOptions)
+// 仅供中国大陆境外用户使用
+// 需要设置为正确的socks5地址
+let socks = "socks5://localhost:3721";  
 
+if(socks){
+  options.args = basicLauchOptions.args.slice();
+  options.args.push(`--proxy-server=${socks}`)
+}
 options.userDataDir = __packagesDirName + "/browserDataDirChromeBetaOversea"
 
 // dns  https://8.8.8.8/dns-query{?dns}
@@ -91,12 +98,12 @@ async function main({
 //   content: "你好，我是程序员 这里是内容 测试测试",
 // })
 
-let x_personal_corplink = {
+let x_personal_socks5 = {
   main,
-  desc: "X-个人-指尖出海版",
+  desc: "X-个人-socks5版",
   params: ["content","headless","autoCommit"]
 }
 
 
-export { x_personal_corplink }
+export { x_personal_socks5 }
 
