@@ -96,12 +96,12 @@ async function main({
 //   content: "你好，我是程序员 这里是内容 测试测试",
 // })
 
-let x_personal = {
+let x_personal_corplink = {
   main,
-  desc: "X-个人",
+  desc: "X-个人-指尖出海版",
   params: ["content","headless","autoCommit"]
 }
 
 
-export { x_personal }
+export { x_personal_corplink }
 
