@@ -68,7 +68,7 @@ import('./auto/providers/index.mjs').then((providers) => {
       let paramObj = {};
   
       paramKeyArr?.forEach((key) => {
-        paramObj[key] = req.body[key] || String("Hello");
+        paramObj[key] = req.body[key];
       })
   
       // 暂不加 await 也可以正常执行

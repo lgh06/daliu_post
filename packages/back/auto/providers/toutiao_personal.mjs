@@ -7,6 +7,7 @@ let { wait } = autoCommons;
 
 
 async function main({title="111",content="222",headless=false}) {
+  console.log("headless",headless)
   let browser = global.browser || await puppeteer.launch({
     ...autoCommons.basicLauchOptions,
     headless,

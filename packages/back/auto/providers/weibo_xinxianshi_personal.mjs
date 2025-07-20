@@ -11,6 +11,8 @@ async function main({
   headless=false,
   autoCommit=false,
 }) {
+  console.log("headless",headless)
+
   let browser = global.browser || await puppeteer.launch({
     ...autoCommons.basicLauchOptions,
     headless,
