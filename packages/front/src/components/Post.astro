@@ -4,19 +4,22 @@
 
 <main>
   <div class="line">
-    请输入标题 可以省略 <br />
+    请输入标题<br />
     <textarea name="title" id="title"></textarea>
   </div>
   <div class="line">
     请输入内容 必填 <br />
     <textarea name="content" id="content"></textarea>
   </div>
-  <div class="line checkboxes">
+  <div class="line" style="zoom: .75;">
+    以下选项要看具体的插件是否支持
+  </div>
+  <div class="line checkboxes" style="zoom: .75;">
     <label>
       <input type="checkbox" name="headless" id="headlesscb" /> 无界面模式
     </label>
   </div>
-  <div class="line checkboxes">
+  <div class="line checkboxes" style="zoom: .75;">
     <label>
       <input type="checkbox" name="autoCommit" id="autoCommitcb" /> 自动提交与发表
     </label>
@@ -28,7 +31,7 @@
 
 <style scoped lang="scss" is:inline>
   main {
-    height: 100%;
+    height: fit-content;
     width: 90%;
     margin: 0 auto;
     font-size: 24px;
@@ -48,6 +51,7 @@
   }
   .buttons button {
     display: inline-block;
+    zoom: 1.2;
     &:not(:nth-of-type(1)):not(:nth-of-type(2)) {
       margin-left: 5px;
     }
