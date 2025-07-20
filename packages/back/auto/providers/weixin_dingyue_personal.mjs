@@ -98,7 +98,7 @@ async function main({title="111", content="222"}) {
 let weixin_dingyue_personal = {
   main,
   desc: "微信订阅号-个人-图文",
-  params: "title,content"
+  params: ["title","content"]
 }
 
 export { weixin_dingyue_personal }

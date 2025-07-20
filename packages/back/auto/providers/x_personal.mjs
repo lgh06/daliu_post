@@ -71,7 +71,7 @@ async function main({content="222"}) {
 let x_personal = {
   main,
   desc: "X-个人",
-  params: "content"
+  params: ["content"]
 }
 
 

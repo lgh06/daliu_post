@@ -64,7 +64,7 @@ import('./auto/providers/index.mjs').then((providers) => {
         delete global.browser;
       }
   
-      let paramKeyArr = providers[providerName]?.params?.split(",");
+      let paramKeyArr = providers[providerName]?.params || [];
       let paramObj = {};
   
       paramKeyArr?.forEach((key) => {

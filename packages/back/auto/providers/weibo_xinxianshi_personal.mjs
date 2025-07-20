@@ -51,7 +51,7 @@ async function main({title="111",content="222"}) {
 let weibo_xinxianshi_personal = {
   main,
   desc: "微博-个人-新鲜事",
-  params: "content"
+  params: ["content"]
 }
 
 
