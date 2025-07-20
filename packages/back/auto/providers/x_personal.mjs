@@ -27,7 +27,11 @@ options.userDataDir = __packagesDirName + "/browserDataDirChromeBetaOversea"
 
 
 
-async function main({content="222",headless=false}) {
+async function main({
+  content="222",
+  headless=false,
+  autoCommit=false,
+}) {
 
   let processCorpLink =  $`/Applications/CorpLink.app/Contents/MacOS/CorpLink`
   processCorpLink.then( () => {
@@ -60,6 +64,13 @@ async function main({content="222",headless=false}) {
     await page.click('div[data-testid="tweetTextarea_0RichTextInputContainer"]');
     await wait(2000)
     await page.keyboard.sendCharacter(content)
+
+    // 自动提交
+    if(autoCommit) {
+      console.log("autoCommit", autoCommit)
+      await wait(15*1000)
+      await page.click(`button[data-testid="tweetButtonInline"]`)
+    }
     
     
     console.log("执行完毕 你需要自己点击 保存为草稿 按钮。")
@@ -88,7 +99,7 @@ async function main({content="222",headless=false}) {
 let x_personal = {
   main,
   desc: "X-个人",
-  params: ["content","headless"]
+  params: ["content","headless","autoCommit"]
 }
 
 
