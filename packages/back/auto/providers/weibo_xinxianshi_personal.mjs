@@ -38,8 +38,9 @@ async function main({
     await page.keyboard.sendCharacter(content)
 
     if(autoCommit) {
-      await wait(20*1000)
-      await page.click(`div[class^=Tool_check] button[class^=Tool_btn]`)
+      console.log("autoCommit", autoCommit)
+      await wait(15*1000)
+      await page.click(`div[class^=Tool_check] button[class*=Tool_btn]`)
     }
 
 
