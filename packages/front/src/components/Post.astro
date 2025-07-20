@@ -11,15 +11,15 @@
     请输入内容 必填 <br />
     <textarea name="content" id="content"></textarea>
   </div>
-  <div class="line" style="zoom: .75;">
+  <div class="line" style="zoom: .85;margin-top: 1rem;">
     以下选项要看具体的插件是否支持
   </div>
-  <div class="line checkboxes" style="zoom: .75;">
+  <div class="line checkboxes" style="zoom: .85;">
     <label>
       <input type="checkbox" name="headless" id="headlesscb" /> 无界面模式
     </label>
   </div>
-  <div class="line checkboxes" style="zoom: .75;">
+  <div class="line checkboxes" style="zoom: .85;">
     <label>
       <input type="checkbox" name="autoCommit" id="autoCommitcb" /> 自动提交与发表
     </label>
@@ -49,13 +49,16 @@
       min-height: 200px;
     }
   }
-  .buttons button {
-    display: inline-block;
-    zoom: 1.2;
-    &:not(:nth-of-type(1)):not(:nth-of-type(2)) {
-      margin-left: 5px;
+  .line.buttons{
+    margin-top: 1rem;
+    button {
+      display: inline-block;
+      zoom: 1.2;
+      &:not(:nth-of-type(1)):not(:nth-of-type(2)) {
+        margin-left: 5px;
+      }
     }
-  }
+  } 
 </style>
 <script>
   // @ts-nocheck
@@ -64,7 +67,12 @@
     Array.from(eleArr).forEach((ele, i) => {
       let v = localStorage.getItem(`$$${ele.tagName}$$${i}`);
       if (v) {
-        ele.value = v;
+        if(ele.tagName === "INPUT" && ele.type === "checkbox"){
+          ele.checked = v === "true" ? true : false;
+        }
+        if(ele.tagName === "TEXTAREA"){
+          ele.value = v;
+        }
       }
     });
   }
@@ -85,7 +93,14 @@
         // save textarea value to localStorage
         let eleArr = document.querySelectorAll("textarea,input[type=checkbox]");
         Array.from(eleArr).forEach((ele, i) => {
-          localStorage.setItem(`$$${ele.tagName}$$${i}`, ele.value || "");
+          let value;
+          if(ele.tagName === "INPUT" && ele.type === "checkbox"){
+            value = ele.checked;
+          } 
+          if(ele.tagName === "TEXTAREA"){
+            value = ele.value;
+          }
+          localStorage.setItem(`$$${ele.tagName}$$${i}`,value || "");
         });
 
         fetch(`http://localhost:3047/${providerName}`, {
