@@ -1,6 +1,7 @@
 // 微信公众号登录
 import puppeteer from 'puppeteer-core';
 import fs from 'fs';
+import { $ } from "zx";
 import { fileURLToPath } from 'url';
 import { dirname , join} from 'path';
 import { autoCommons } from '../autoCommons.mjs'
@@ -14,7 +15,7 @@ const __packagesDirName = join( __dirname, "../", "../", "../" )
 let { getNewBrowserTab,wait, basicLauchOptions } = autoCommons;
 
 let options = Object.assign({}, basicLauchOptions)
-let socks = "socks5://localhost:3721"
+let socks = process.env.SOCKS_PROXY || false ; // "socks5://localhost:3000"
 
 if(socks){
   options.args = basicLauchOptions.args.slice();
@@ -27,6 +28,13 @@ options.userDataDir = __packagesDirName + "/browserDataDirChromeBetaOversea"
 
 
 async function main({content="222",headless=false}) {
+
+  let processCorpLink =  $`/Applications/CorpLink.app/Contents/MacOS/CorpLink`
+  processCorpLink.then( () => {
+    console.log("CorpLink 启动成功")
+  });
+  await wait(5000);
+
   let browser = global.browser || await puppeteer.launch({
     ...options,
     headless,
@@ -52,9 +60,15 @@ async function main({content="222",headless=false}) {
     await page.click('div[data-testid="tweetTextarea_0RichTextInputContainer"]');
     await wait(2000)
     await page.keyboard.sendCharacter(content)
-
-
+    
+    
     console.log("执行完毕 你需要自己点击 保存为草稿 按钮。")
+    try {
+      await wait(30_000)
+      processCorpLink.nothrow(true).kill()
+    } catch (error) {
+      
+    }
 
 
 
