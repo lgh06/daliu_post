@@ -26,8 +26,11 @@ options.userDataDir = __packagesDirName + "/browserDataDirChromeBetaOversea"
 
 
 
-async function main({content="222"}) {
-  let browser = global.browser || await puppeteer.launch(options);
+async function main({content="222",headless=false}) {
+  let browser = global.browser || await puppeteer.launch({
+    ...options,
+    headless,
+  });
   global.browser = browser;
   /**
    * @type {import('puppeteer-core').Page}
@@ -71,7 +74,7 @@ async function main({content="222"}) {
 let x_personal = {
   main,
   desc: "X-个人",
-  params: ["content"]
+  params: ["content","headless"]
 }
 
 

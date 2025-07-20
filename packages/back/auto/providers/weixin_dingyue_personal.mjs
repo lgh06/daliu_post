@@ -13,9 +13,10 @@ const __dirname = dirname(__filename);
 let { getNewBrowserTab,wait, basicLauchOptions } = autoCommons;
 
 
-async function main({title="111", content="222"}) {
+async function main({title="111", content="222", headless=false}) {
   let browser = global.browser || await puppeteer.launch({
     ...basicLauchOptions,
+    headless,
   });
   global.browser = browser;
   /**
@@ -98,7 +99,7 @@ async function main({title="111", content="222"}) {
 let weixin_dingyue_personal = {
   main,
   desc: "微信订阅号-个人-图文",
-  params: ["title","content"]
+  params: ["title","content","headless"]
 }
 
 export { weixin_dingyue_personal }

@@ -11,6 +11,16 @@
     请输入内容 必填 <br />
     <textarea name="content" id="content"></textarea>
   </div>
+  <div class="line checkboxes">
+    <label>
+      <input type="checkbox" name="headless" id="headlesscb" /> 无界面模式
+    </label>
+  </div>
+  <div class="line checkboxes">
+    <label>
+      <input type="checkbox" name="autocommit" id="autocommitcb" /> 自动提交与发表
+    </label>
+  </div>
   <div class="line buttons">
     <button style="display:none"></button>
   </div>
@@ -38,7 +48,8 @@
   }
   .buttons button {
     display: inline-block;
-    &:not(:first-of-type):not(:nth-of-type(2)) {
+    &:not(:nth-of-type(1)):not(:nth-of-type(2)) {
+    // &:not(:nth-of-type(1)) {
       margin-left: 5px;
     }
   }
@@ -66,6 +77,8 @@
       button.onclick = () => {
         let title = document.querySelector("#title").value;
         let content = document.querySelector("#content").value;
+        let headless = document.querySelector("#headlesscb").checked;
+        let autocommit = document.querySelector("#autocommitcb").checked;
         // save textarea value to localStorage
         let textareaEleArr = document.querySelectorAll("textarea");
         Array.from(textareaEleArr).forEach((textareaEle, i) => {
@@ -80,6 +93,8 @@
           body: JSON.stringify({
             title,
             content,
+            headless,
+            autocommit,
           }),
         })
           .then((response) => {
