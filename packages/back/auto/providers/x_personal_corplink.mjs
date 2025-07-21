@@ -70,7 +70,9 @@ async function main({
     
     try {
       await wait(10_000)
-      processCorpLink.nothrow(true).kill()
+      processCorpLink.nothrow(true).kill().then( () => {
+        console.log("CorpLink 关闭成功")
+      })
     } catch (error) {
       
     }
