@@ -6,7 +6,7 @@ let { wait } = autoCommons;
 
 
 
-async function main({content="222",headless=false}) {
+async function main({content="222",headless=false,autoCommit=false}) {
   console.log("headless",headless)
   let browser = global.browser || await puppeteer.launch({
     ...autoCommons.basicLauchOptions,
@@ -38,9 +38,13 @@ async function main({content="222",headless=false}) {
     await page.keyboard.sendCharacter(content)
     await wait()
 
+    if(autoCommit) {
+      await page.click('#root  div.footer-wrap > div > button.byte-btn.byte-btn-primary.byte-btn-size-default.byte-btn-shape-square.publish-content > span')
+      await wait();
+    }
 
 
-    console.log("执行完毕 你需要自己点击 保存为草稿 按钮。")
+    console.log("头条-个人-微头条 执行完毕")
 
 
 
@@ -60,7 +64,7 @@ async function main({content="222",headless=false}) {
 let toutiao_personal_micro = {
   main,
   desc: "头条-个人-微头条",
-  params: ["content","headless"]
+  params: ["content","headless","autoCommit"]
 }
 
 
