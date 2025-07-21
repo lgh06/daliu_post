@@ -68,13 +68,13 @@ async function main({
     }
     
     
-    console.log("X 个人 指尖出海版 执行完毕。")
     try {
-      await wait(30_000)
+      await wait(10_000)
       processCorpLink.nothrow(true).kill()
     } catch (error) {
       
     }
+    console.log("X 个人 指尖出海版 执行完毕。")
 
 
 
