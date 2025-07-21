@@ -45,7 +45,7 @@ async function main({
 
 
 
-    console.log("执行完毕 你需要自己点击 保存为草稿 按钮。")
+    console.log("微博 个人 新鲜事 执行完毕 。")
 
 
 

@@ -68,7 +68,7 @@ async function main({
     }
     
     
-    console.log("执行完毕 你需要自己点击 保存为草稿 按钮。")
+    console.log("X 个人 指尖出海版 执行完毕。")
     try {
       await wait(30_000)
       processCorpLink.nothrow(true).kill()
