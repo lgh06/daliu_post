@@ -68,7 +68,7 @@ async function main({
     }
     
     
-    console.log("执行完毕 你需要自己点击 保存为草稿 按钮。")
+    console.log("X-个人-socks5版 执行完毕 。")
 
   } catch (error) {
     console.error(error)
