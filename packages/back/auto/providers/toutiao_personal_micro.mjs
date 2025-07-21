@@ -39,7 +39,7 @@ async function main({content="222",headless=false,autoCommit=false}) {
     await wait()
 
     if(autoCommit) {
-      await page.click('#root  div.footer-wrap > div > button.byte-btn.byte-btn-primary.byte-btn-size-default.byte-btn-shape-square.publish-content > span')
+      await page.click('#root  div.footer-wrap > div.footer.garr-footer-publish-content > button.byte-btn.publish-content > span')
       await wait();
     }
 
