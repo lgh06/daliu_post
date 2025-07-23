@@ -39,7 +39,7 @@ async function main({
 
     if(autoCommit) {
       console.log("autoCommit", autoCommit)
-      await wait(15*1000)
+      await wait()
       await page.click(`div[class^=Tool_check] button[class*=Tool_btn]`)
     }
 

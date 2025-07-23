@@ -13,7 +13,12 @@ const __dirname = dirname(__filename);
 let { getNewBrowserTab,wait, basicLauchOptions } = autoCommons;
 
 
-async function main({title="111", content="222", headless=false}) {
+async function main({
+  title="111", 
+  content="222", 
+  headless=false, 
+  autoCommit=false,
+}) {
     console.log("headless",headless)
 
   let browser = global.browser || await puppeteer.launch({
@@ -67,20 +72,19 @@ async function main({title="111", content="222", headless=false}) {
     console.log("after getNewBrowserTab")
 
 
-    await wait(1 * 3600 * 1000)
+    // await wait(1 * 3600 * 1000)    
 
-    await page.waitForSelector('#js_appmsg_editor');
-    console.log("after waitForSelector #js_appmsg_editor")
+    await page.waitForSelector('div#guide_words_main > div > span.share-text__wrp > div.share-text__input.js_pmEditorArea.share-text__input_h > div > span');
+    console.log("after waitForSelector div#guide_words_main > div > span.share-text__wrp > div.share-text__input.js_pmEditorArea.share-text__input_h > div > span")
     await wait(3000)
-    await page.mouse.move(800, 500)
-    await wait(3000)
-    await page.mouse.wheel({deltaY: 100})
-    await wait(3000)
-    await page.locator('#title').fill(title) // 公众号 图文 的 标题
-    await wait(3000)
-    await page.locator('#ueditor_0 div.ProseMirror').click();
-    await wait(3000)
-    await page.keyboard.sendCharacter(content); // 公众号 图文 的 内容
+    await page.click("div#guide_words_main > div > span.share-text__wrp > div.share-text__input.js_pmEditorArea.share-text__input_h > div > span")
+    await page.keyboard.sendCharacter(content); // 公众号 纯文本 的 内容
+
+    if(autoCommit){
+      await wait(3000)
+      await page.click("#js_send > button.mass_send")
+      await wait(3000)
+    }
 
 
     console.log("执行完毕 你需要自己点击 保存为草稿 按钮。")
@@ -105,7 +109,7 @@ async function main({title="111", content="222", headless=false}) {
 let weixin_dingyue_personal_text = {
   main,
   desc: "微信订阅号-个人-纯文字",
-  params: ["title","content","headless"]
+  params: ["title","content","headless", "autoCommit"]
 }
 
 export { weixin_dingyue_personal_text }
