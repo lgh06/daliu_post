@@ -59,9 +59,13 @@ import('./auto/providers/index.mjs').then((providers) => {
     if(providerName.startsWith("__")) return;
     app.post(`/${providerName}`, async (req, res) => {
   
-      if(global.browser){
-        await global.browser.close();
-        delete global.browser;
+      try {
+        if(global.browser){
+          await global.browser.close();
+          delete global.browser;
+        }
+      } catch (error) {
+        
       }
   
       let paramKeyArr = providers[providerName]?.params || [];
