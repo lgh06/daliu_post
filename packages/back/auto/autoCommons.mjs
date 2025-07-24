@@ -1,5 +1,6 @@
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import fs from 'fs';
 
 // 获取当前文件的目录路径
 const __filename = fileURLToPath(import.meta.url);
@@ -7,13 +8,26 @@ const __dirname = dirname(__filename);
 
 const __packagesDirName = join( __dirname, "../", "../" );
 
+let getExecutablePath = () => {
+  let filePaths = [
+    '/Applications/Google Chrome Beta.app/Contents/MacOS/Google\ Chrome\ Beta', // macOS Chrome Beta路径
+    'C:/Program Files/Google/Chrome Beta/Application/chrome.exe', // windows Chrome Beta路径
+  ]
+  for (let filePath of filePaths) {
+    if (fs.existsSync(filePath)) {
+      return filePath;
+    }
+  }
+}
+
+let executablePath = getExecutablePath();
+
 // 启动浏览器配置
 /**
  * @type {import('puppeteer-core').LaunchOptions}
  */
 let basicLauchOptions = {
-  executablePath: '/Applications/Google Chrome Beta.app/Contents/MacOS/Google\ Chrome\ Beta', // macOS Chrome Beta路径
-  // executablePath: 'C:/Program Files/Google/Chrome Beta/Application/chrome.exe', // windows Chrome Beta路径
+  executablePath,
   userDataDir: __packagesDirName + '/browserDataDirChromeBeta',
   headless: false,
   defaultViewport: null,
