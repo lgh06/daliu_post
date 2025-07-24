@@ -13,6 +13,7 @@ const __packagesDirName = join( __dirname, "../", "../" );
  */
 let basicLauchOptions = {
   executablePath: '/Applications/Google Chrome Beta.app/Contents/MacOS/Google\ Chrome\ Beta', // macOS Chrome Beta路径
+  // executablePath: 'C:/Program Files/Google/Chrome Beta/Application/chrome.exe', // windows Chrome Beta路径
   userDataDir: __packagesDirName + '/browserDataDirChromeBeta',
   headless: false,
   defaultViewport: null,
