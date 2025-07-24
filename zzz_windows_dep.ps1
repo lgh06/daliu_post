@@ -2,5 +2,4 @@ Invoke-WebRequest -Uri "https://cnb.cool/lgh06/daliu_post_dependencies/-/lfs/47f
 .\"Git-2.50.1-64-bit.exe" /SILENT /VERYSILENT --silent --install
 Start-Sleep -Seconds 30
 Start-Process -FilePath "C:\Program Files\Git\cmd\git.exe" -ArgumentList " clone https://cnb.cool/lgh06/daliu_post_dependencies.git"
-cd daliu_post_dependencies
-.\install.ps1
+Start-Process -FilePath "C:\Program Files\Git\cmd\git.exe" -ArgumentList " clone https://cnb.cool/lgh06/daliu_post.git"
