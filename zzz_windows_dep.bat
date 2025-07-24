@@ -1,0 +1,1 @@
+powershell -ExecutionPolicy Bypass -File "zzz_windows_dep.ps1" 
