@@ -22,12 +22,11 @@
 
 
 # 依赖  
-Node.js V22  
-https://nodejs.org/zh-cn/download    
-> 镜像地址 https://registry.npmmirror.com/binary.html?path=node/v22.17.1/  
-> windows建议使用 node-v22.17.1-x64.msi ， macOS建议使用 node-v22.17.1.pkg  
-
-Chrome Beta https://www.google.cn/chrome/beta/?standalone=1  
+- Node.js V22  
+  https://nodejs.org/zh-cn/download    
+  > 镜像地址 https://registry.npmmirror.com/binary.html?path=node/v22.17.1/  
+  > windows建议使用 node-v22.17.1-x64.msi ， macOS建议使用 node-v22.17.1.pkg  
+- Chrome Beta https://www.google.cn/chrome/beta/?standalone=1  
 
 # 安装  
 npm install  
