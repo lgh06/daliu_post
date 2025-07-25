@@ -10,4 +10,4 @@ Invoke-WebRequest -Uri $Uri -Headers $ReqHeaders -OutFile "Git-2.50.1-64-bit.exe
 Start-Sleep -Seconds 30
 
 Start-Process -FilePath "C:\Program Files\Git\cmd\git.exe" -ArgumentList " clone https://cnb.cool/lgh06/daliu_post_dependencies.git"
-Start-Process -FilePath "C:\Program Files\Git\cmd\git.exe" -ArgumentList " clone https://cnb.cool/lgh06/daliu_post.git"
+# Start-Process -FilePath "C:\Program Files\Git\cmd\git.exe" -ArgumentList " clone https://cnb.cool/lgh06/daliu_post.git"
