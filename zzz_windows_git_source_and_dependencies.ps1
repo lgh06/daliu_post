@@ -4,7 +4,7 @@ $ReqHeaders = @{
     'User-Agent' = 'daliu_post'
 }
 $Uri = "https://doge-ahuan-cd-1.onlinetool.cc/daliu_post_related/Git-2.50.1-64-bit.exe"
-Invoke-WebRequest -Uri $Uri -Headers $ReqHeaders -SkipHeaderValidation  -OutFile "Git-2.50.1-64-bit.exe"  
+Invoke-WebRequest -Uri $Uri -Headers $ReqHeaders -OutFile "Git-2.50.1-64-bit.exe"  
 
 .\"Git-2.50.1-64-bit.exe" /SILENT /VERYSILENT --silent --install
 Start-Sleep -Seconds 30
