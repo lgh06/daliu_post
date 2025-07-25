@@ -23,19 +23,14 @@ Expand-Archive -Path "daliu_post_dependencies_$CurrentDateTime.zip" -Destination
 
 # 静默安装 Node.js
 $msiPath = "node-v22.17.1-x64.msi"
+Write-Host "正在安装 Node.js..."
+Start-Process msiexec.exe -ArgumentList '/i "./daliu_post_dependencies_$CurrentDateTime/$msiPath" /quiet /norestart' -Wait
+Write-Host "Node.js 安装完成"
+Start-Sleep -Seconds 6
 
-if (Test-Path $msiPath) {
-    Write-Host "正在安装 Node.js..."
-    Start-Process msiexec.exe -ArgumentList "/i `".\daliu_post_dependencies_$CurrentDateTime\$msiPath`" /quiet /norestart" -Wait
-    Write-Host "Node.js 安装完成"
-	Start-Sleep -Seconds 6
-} else {
-    Write-Host "错误：找不到 $msiPath 文件"
-    exit 1
-}
 
 # 静默安装 ChromeBetaStandaloneSetup64.exe
-.\daliu_post_dependencies_$CurrentDateTime\ChromeBetaStandaloneSetup64.exe --silent --install
+Start-Process -FilePath "./daliu_post_dependencies_$CurrentDateTime/ChromeBetaStandaloneSetup64.exe" -Args "/silent /install"
 Write-Host "Chrome Beta 安装完成"
 Start-Sleep -Seconds 6
 
