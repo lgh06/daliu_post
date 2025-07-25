@@ -21,16 +21,19 @@ Invoke-WebRequest -Uri $Uri2 -Headers $ReqHeaders -OutFile "daliu_post_dependenc
 Expand-Archive -Path "daliu_post_dependencies_$CurrentDateTime.zip" -DestinationPath ".\daliu_post_dependencies_$CurrentDateTime" -Force
 
 
+
+cd  "daliu_post_dependencies_$CurrentDateTime"
+
 # 静默安装 Node.js
 $msiPath = "node-v22.17.1-x64.msi"
 Write-Host "正在安装 Node.js..."
-Start-Process msiexec.exe -ArgumentList '/i "./daliu_post_dependencies_$CurrentDateTime/$msiPath" /quiet /norestart' -Wait
+Start-Process msiexec.exe -ArgumentList "/i `"$msiPath`" /quiet /norestart" -Wait
 Write-Host "Node.js 安装完成"
 Start-Sleep -Seconds 6
 
 
 # 静默安装 ChromeBetaStandaloneSetup64.exe
-Start-Process -FilePath "./daliu_post_dependencies_$CurrentDateTime/ChromeBetaStandaloneSetup64.exe" -Args "/silent /install"
+Start-Process -FilePath ".\ChromeBetaStandaloneSetup64.exe" -Args "/silent /install"
 Write-Host "Chrome Beta 安装完成"
 Start-Sleep -Seconds 6
 
