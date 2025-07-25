@@ -1,5 +1,8 @@
 # Intro  
 大刘的自媒体自动化工具。  
+仅依赖Node.js ，Chrome Beta。  
+跨平台运行。支持Windows、MacOS、Linux。  
+服务器版Linux，建议使用docker headless版本的Chrome。请自行修改源码。  
 本项目目前是半成品 仍在开发和构思 中。  
 欢迎小众平台的用户联系我，可以付费开发小众平台的自动发布工具。  
 > 微信 mudguy  
@@ -20,6 +23,8 @@
 去 daliu_post_dependencies 目录，找到install.bat，双击运行。（或install.ps1 右键 使用PowerShell运行）  
 去 daliu_post 目录，找到run.bat，双击运行。  
 
+> Windows依赖 拉取自： https://cnb.cool/lgh06/daliu_post_dependencies  
+> 对应zip包地址：https://cnb.cool/lgh06/daliu_post_dependencies/-/git/archive/main.zip
 
 # 依赖  
 - Node.js V22  
@@ -31,6 +36,9 @@
 # 安装  
 npm install  
 # 修改浏览器二进制文件路径  
+
+如果Chrome Beta在点击网页上的按钮后正常执行，可忽略此步骤。  
+
 `packages/back/auto/autoCommons.mjs` 内，将浏览器的二进制可执行文件的路径，设置正确。  
 MacOS Chrome Beta： `'/Applications/Google Chrome Beta.app/Contents/MacOS/Google\ Chrome\ Beta'`  
 Windows Chrome Beta： `'C:/Program Files/Google/Chrome Beta/Application/chrome.exe'`  
