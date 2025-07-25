@@ -11,13 +11,24 @@
 本工具没有逆向、没有反编译、没有破解，只是单纯的模拟用户操作。  
 本工具仅用于学习、研究、测试，不得用于任何商业用途。  
 任何使用本工具产生的法律责任，由使用者自行承担。  
-# 语言  
+# Windows用户极简安装  
+下载 [此文件](https://cnb.cool/lgh06/daliu_post/-/git/raw/main/zzz_windows_dependencies.ps1?download=true)  
+右键，使用PowerShell运行。  
+
+此脚本 会自动下载daliu_post.zip和daliu_post_dependencies.zip， 并自动解压。  
+
+去 daliu_post_dependencies 目录，找到install.bat，双击运行。（或install.ps1 右键 使用PowerShell运行）  
+去 daliu_post 目录，找到run.bat，双击运行。  
+
+
+# 依赖  
 Node.js V22  
 https://nodejs.org/zh-cn/download    
 > 镜像地址 https://registry.npmmirror.com/binary.html?path=node/v22.17.1/  
 > windows建议使用 node-v22.17.1-x64.msi ， macOS建议使用 node-v22.17.1.pkg  
-# 额外依赖  
+
 Chrome Beta https://www.google.cn/chrome/beta/?standalone=1  
+
 # 安装  
 npm install  
 # 修改浏览器二进制文件路径  
