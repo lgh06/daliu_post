@@ -22,9 +22,11 @@
 输入 `Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser` 回车， 然后输入 **Y** 回车。  
 然后将 `zzz_windows_dependencies.ps1` 文件拖入蓝色窗口中，再按回车。  
 
+> 您需要等待半分钟或几分钟。取决于您的网速。  
+
 此脚本 会自动下载daliu_post.zip和daliu_post_dependencies.zip， 并自动解压。  
 
-去 daliu_post_dependencies 目录，找到install.bat，双击运行。（或install.ps1 右键 使用PowerShell运行）  
+~~去 daliu_post_dependencies 目录，找到install.bat，双击运行。（或install.ps1 右键 使用PowerShell运行）~~  
 去 daliu_post 目录，找到run.bat，双击运行。  
 
 > Windows依赖 拉取自： https://cnb.cool/lgh06/daliu_post_dependencies  
