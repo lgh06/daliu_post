@@ -1,5 +1,7 @@
 ﻿Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
 
+$ProgressPreference = 'SilentlyContinue'
+
 # 声明变量，存储当前日期时间，格式为 年月日_时分秒  
 
 $CurrentDateTime = Get-Date -Format "yyyyMMdd_HHmmss"
