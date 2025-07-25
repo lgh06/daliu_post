@@ -1,0 +1,1 @@
+powershell -ExecutionPolicy Bypass -File "zzz_windows_dependencies.ps1" 

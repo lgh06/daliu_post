@@ -1,1 +1,0 @@
-powershell -ExecutionPolicy Bypass -File "zzz_windows_git_and_dependencies.ps1" 
