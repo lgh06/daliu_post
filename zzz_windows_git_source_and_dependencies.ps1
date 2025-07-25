@@ -1,6 +1,13 @@
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
-Invoke-WebRequest -Uri "https://cnb.cool/lgh06/daliu_post_dependencies/-/lfs/47fe1d46dbb7111f6693b04a8bd95fc869ce2062df7b4822b52849548fb457e4?name=Git-2.50.1-64-bit.exe" -OutFile "Git-2.50.1-64-bit.exe"  
+
+$ReqHeaders = @{
+    'User-Agent' = 'daliu_post'
+}
+$Uri = "https://doge-ahuan-cd-1.onlinetool.cc/daliu_post_related/Git-2.50.1-64-bit.exe"
+Invoke-WebRequest -Uri $Uri -Headers $ReqHeaders -SkipHeaderValidation  -OutFile "Git-2.50.1-64-bit.exe"  
+
 .\"Git-2.50.1-64-bit.exe" /SILENT /VERYSILENT --silent --install
 Start-Sleep -Seconds 30
+
 Start-Process -FilePath "C:\Program Files\Git\cmd\git.exe" -ArgumentList " clone https://cnb.cool/lgh06/daliu_post_dependencies.git"
 Start-Process -FilePath "C:\Program Files\Git\cmd\git.exe" -ArgumentList " clone https://cnb.cool/lgh06/daliu_post.git"
