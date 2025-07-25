@@ -1,12 +1,22 @@
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
+# 声明变量，存储当前日期时间，格式为 年月日_时分秒
+$CurrentDateTime = Get-Date -Format "yyyyMMdd_HHmmss"
+
 
 $ReqHeaders = @{
     'User-Agent' = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36'
 }
-$Uri = "https://cnb.cool/lgh06/daliu_post_dependencies/-/git/archive/main.zip"
-Invoke-WebRequest -Uri $Uri -Headers $ReqHeaders -OutFile "daliu_post_dependencies.zip"  
+$Uri1 = "https://cnb.cool/lgh06/daliu_post/-/git/archive/main.zip"
+Invoke-WebRequest -Uri $Uri1 -Headers $ReqHeaders -OutFile "daliu_post_$CurrentDateTime.zip"
 
-Expand-Archive -Path "daliu_post_dependencies.zip" -DestinationPath ".\daliu_post_dependencies" -Force
+Expand-Archive -Path "daliu_post_$CurrentDateTime.zip" -DestinationPath ".\daliu_post_$CurrentDateTime" -Force
+
+
+
+$Uri2 = "https://cnb.cool/lgh06/daliu_post_dependencies/-/git/archive/main.zip"
+Invoke-WebRequest -Uri $Uri2 -Headers $ReqHeaders -OutFile "daliu_post_dependencies_$CurrentDateTime.zip"  
+
+Expand-Archive -Path "daliu_post_dependencies_$CurrentDateTime.zip" -DestinationPath ".\daliu_post_dependencies_$CurrentDateTime" -Force
 
 # .\"Git-2.50.1-64-bit.exe" /SILENT /VERYSILENT --silent --install
 # Start-Sleep -Seconds 15
