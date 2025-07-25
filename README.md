@@ -33,8 +33,10 @@
   > windows建议使用 node-v22.17.1-x64.msi ， macOS建议使用 node-v22.17.1.pkg  
 - Chrome Beta https://www.google.cn/chrome/beta/?standalone=1  
 
-# 安装  
-npm install  
+# 安装与运行  
+`npm install && npm start`  
+会尝试使用默认浏览器，自动打开 `http://localhost:4321`  
+
 # 修改浏览器二进制文件路径  
 
 如果Chrome Beta在点击网页上的按钮后正常执行，可忽略此步骤。  
@@ -42,12 +44,9 @@ npm install
 `packages/back/auto/autoCommons.mjs` 内，将浏览器的二进制可执行文件的路径，设置正确。  
 MacOS Chrome Beta： `'/Applications/Google Chrome Beta.app/Contents/MacOS/Google\ Chrome\ Beta'`  
 Windows Chrome Beta： `'C:/Program Files/Google/Chrome Beta/Application/chrome.exe'`  
+
 # providers  
 packages/back/auto/providers 目录下的文件，某些行可能也需要修改。  
-# 运行  
-npm run dev  
-# 浏览器打开  
-http://localhost:4321  
 
 # 其它
 > 有空研究一下ProseMirror，头条和订阅号都使用了这个富文本编辑器。  
