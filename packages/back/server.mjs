@@ -4,6 +4,7 @@ import cors from 'cors';
 import { writeProviderIndex } from './auto/writeProviderIndex.mjs';
 import { networkInterfaces } from 'os';
 import { Buffer } from 'buffer';
+import http from 'node:http';
 
 let wait = (ms=1000) => new Promise((resolve) => {setTimeout(resolve, ms)})
 
@@ -81,7 +82,10 @@ import('./auto/providers/index.mjs').then((providers) => {
     });
   });
 
-  app.listen(port, () => {
+  http.createServer({
+    keepAlive: true,
+    keepAliveTimeout: 3600_000,
+  }, app).listen(port, () => {
     console.log(`API Backend Server running at http://localhost:${port}`);
   });
 
