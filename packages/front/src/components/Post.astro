@@ -49,7 +49,7 @@
       min-height: 200px;
     }
   }
-  .line.buttons{
+  .line.buttons {
     margin-top: 1rem;
     button {
       display: inline-block;
@@ -58,7 +58,7 @@
         margin-left: 5px;
       }
     }
-  } 
+  }
 </style>
 <script>
   // @ts-nocheck
@@ -67,10 +67,10 @@
     Array.from(eleArr).forEach((ele, i) => {
       let v = localStorage.getItem(`$$${ele.tagName}$$${i}`);
       if (v) {
-        if(ele.tagName === "INPUT" && ele.type === "checkbox"){
+        if (ele.tagName === "INPUT" && ele.type === "checkbox") {
           ele.checked = v === "true" ? true : false;
         }
-        if(ele.tagName === "TEXTAREA"){
+        if (ele.tagName === "TEXTAREA") {
           ele.value = v;
         }
       }
@@ -94,13 +94,13 @@
         let eleArr = document.querySelectorAll("textarea,input[type=checkbox]");
         Array.from(eleArr).forEach((ele, i) => {
           let value;
-          if(ele.tagName === "INPUT" && ele.type === "checkbox"){
+          if (ele.tagName === "INPUT" && ele.type === "checkbox") {
             value = ele.checked;
-          } 
-          if(ele.tagName === "TEXTAREA"){
+          }
+          if (ele.tagName === "TEXTAREA") {
             value = ele.value;
           }
-          localStorage.setItem(`$$${ele.tagName}$$${i}`,value || "");
+          localStorage.setItem(`$$${ele.tagName}$$${i}`, value || "");
         });
 
         fetch(`http://localhost:3047/${providerName}`, {
@@ -132,7 +132,20 @@
     });
   }
 
+  async function progress() {
+    // https://masteringjs.io/tutorials/express/server-sent-events
+    const source = new EventSource("http://localhost:3047/progress");
+
+    source.addEventListener("message", (message) => {
+      console.log("Got", message);
+      // Display the event data in the `content` div
+      // document.querySelector("#content").innerHTML = event.data;
+    });
+  }
+
   main();
 
   revertTextarea();
+
+  progress();
 </script>
