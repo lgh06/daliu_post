@@ -54,7 +54,7 @@ app.get('/providers', async (req, res) => {
   res.json(result);
 });
 
-import('./auto/providers/index.mjs').then((providers) => {
+await import('./auto/providers/index.mjs').then((providers) => {
 
   Object.keys(providers).forEach((providerName) => {
     if(providerName.startsWith("__")) return;
@@ -82,14 +82,14 @@ import('./auto/providers/index.mjs').then((providers) => {
     });
   });
 
-  http.createServer({
-    keepAlive: true,
-    keepAliveTimeout: 3600_000,
-  }, app).listen(port, () => {
-    console.log(`API Backend Server running at http://localhost:${port}`);
-  });
-
 })
+
+http.createServer({
+  keepAlive: true,
+  keepAliveTimeout: 3600_000,
+}, app).listen(port, () => {
+  console.log(`API Backend Server running at http://localhost:${port}`);
+});
 
 
 
