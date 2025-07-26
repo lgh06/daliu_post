@@ -10,6 +10,7 @@ async function main({
   content="222", 
   headless=false,
   autoCommit=false,
+  progress
 }) {
   console.log("headless",headless)
 
@@ -36,6 +37,7 @@ async function main({
     await page.click('#homeWrap textarea[placeholder="有什么新鲜事想分享给大家？"]');
     await wait()
     await page.keyboard.sendCharacter(content)
+    progress("正在发送键盘 content")
 
     if(autoCommit) {
       console.log("autoCommit", autoCommit)

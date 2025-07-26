@@ -68,6 +68,23 @@ async function getNewBrowserTab(browser) {
         browser.on('targetcreated', onTargetcreatedHandler)
     })
 }
+/**
+ * 
+ * @param {import("express").Response} res 
+ * @param {String} uid 
+ * @param {String} str 
+ */
+async function sendProgressToUser(newestProgressResponse,uid="1",str="") {
+  console.log("sendProgressToUser",newestProgressResponse)
+  let res = newestProgressResponse["uid"+uid];
+  if(res && res.req?.query?.uid === uid){
+    console.log("sendProgressToUser uid匹配")
+    res.write(`data: ${str}\n\n`)
+  }else{
+    console.log("sendProgressToUser uid 不不不匹配", uid, res.query?.uid)
+
+  }
+}
 
 
 
@@ -76,6 +93,7 @@ let autoCommons = {
   basicLauchOptions,
   wait,
   getNewBrowserTab,
+  sendProgressToUser,
 }
 
 export { autoCommons, autoCommons as default}

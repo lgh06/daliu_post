@@ -134,7 +134,7 @@
 
   async function progress() {
     // https://masteringjs.io/tutorials/express/server-sent-events
-    const source = new EventSource("http://localhost:3047/progress");
+    const source = new EventSource("http://localhost:3047/progress?uid=1");
 
     source.addEventListener("message", (message) => {
       console.log("Got", message);

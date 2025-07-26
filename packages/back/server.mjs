@@ -5,10 +5,13 @@ import { writeProviderIndex } from './auto/writeProviderIndex.mjs';
 import { networkInterfaces } from 'os';
 import { Buffer } from 'buffer';
 import http from 'node:http';
+import { autoCommons } from "./auto/autoCommons.mjs";
 
 let wait = (ms=1000) => new Promise((resolve) => {setTimeout(resolve, ms)})
 
 writeProviderIndex();
+
+let { sendProgressToUser } = autoCommons;
 
 // await wait();
 
@@ -54,26 +57,33 @@ app.get('/providers', async (req, res) => {
   res.json(result);
 });
 
+let newestProgressResponse = {};
 // https://masteringjs.io/tutorials/express/server-sent-events
 app.get('/progress', async (req, res) => {
     console.log('Got /progress');
+    let uid =  req.query?.uid || "1"; 
+    console.log("uid",uid)
+
     res.set({
       'Cache-Control': 'no-cache',
       'Content-Type': 'text/event-stream',
       'Connection': 'keep-alive'
     });
     res.flushHeaders();
+    newestProgressResponse["uid"+ uid] = res;
 
     // Tell the client to retry every 10 seconds if connectivity is lost
     res.write('retry: 10000\n\n');
-    let count = 0;
 
-    while (true) {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      console.log('Emit', ++count);
-      // Emit an SSE that contains the current 'count' as a string
-      res.write(`data: ${count}\n\n`);
-    }
+
+    // let count = 0;
+
+    // while (true) {
+    //   await new Promise(resolve => setTimeout(resolve, 1000));
+    //   console.log('Emit', ++count);
+    //   // Emit an SSE that contains the current 'count' as a string
+    //   res.write(`data: ${count}\n\n`);
+    // }
 });
 
 await import('./auto/providers/index.mjs').then((providers) => {
@@ -97,6 +107,11 @@ await import('./auto/providers/index.mjs').then((providers) => {
       paramKeyArr?.forEach((key) => {
         paramObj[key] = req.body[key];
       })
+
+      paramObj.progress = (str)=>{
+        console.log("progress",str )
+        sendProgressToUser(newestProgressResponse,"1", str)
+      };
   
       // 暂不加 await 也可以正常执行
       providers[providerName]?.main(paramObj);
