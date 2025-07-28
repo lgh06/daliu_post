@@ -3,6 +3,9 @@
 ---
 
 <main>
+  <div id="progress-container">
+    <div id="progress-messages"></div>
+  </div>
   <div class="line">
     请输入标题<br />
     <textarea name="title" id="title"></textarea>
@@ -58,6 +61,37 @@
         margin-left: 5px;
       }
     }
+  }
+  
+  #progress-container {
+    position: fixed;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow: hidden;
+  }
+  
+  #progress-messages {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: transform 0.3s ease;
+  }
+  
+  .progress-message {
+    padding: 5px 10px;
+    color: white;
+    font-size: 14px;
+    opacity: 1;
+    transition: opacity 2s ease;
+  }
+  
+  .progress-message.fade-out {
+    opacity: 0;
   }
 </style>
 <script>
@@ -152,8 +186,21 @@
   // @ts-nocheck
   import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js";
   const socket = io("ws://localhost:3047/");
+  // 获取消息容器
+  const container = document.getElementById('progress-messages');
+
   socket.on('progress', (...arg) => {
     let last = arg.pop();
     console.log(...arg); // 'world'
+    
+    
+    // 创建新消息元素
+    const messageElement = document.createElement('div');
+    messageElement.className = 'progress-message';
+    messageElement.textContent = arg.join(' ');
+    
+    // 将新消息添加到容器顶部
+    container?.append(messageElement);
+    
   });
 </script>
