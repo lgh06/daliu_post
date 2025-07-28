@@ -132,20 +132,8 @@
     });
   }
 
-  async function progress() {
-    // https://masteringjs.io/tutorials/express/server-sent-events
-    const source = new EventSource("http://localhost:3047/progress");
-
-    source.addEventListener("message", (message) => {
-      console.log("Got", message);
-      // Display the event data in the `content` div
-      // document.querySelector("#content").innerHTML = event.data;
-    });
-  }
 
   main();
 
   revertTextarea();
-
-  progress();
 </script>
