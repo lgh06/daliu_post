@@ -65,7 +65,7 @@
   
   #progress-container {
     position: fixed;
-    top: 0;
+    bottom: 30px;
     left: 10%;
     width: 80%;
     height: 50px;
@@ -79,19 +79,17 @@
     bottom: 0;
     left: 0;
     right: 0;
-    transition: transform 0.3s ease;
+    transition: all 0.3s linear;
+    opacity: 1;
+    &.hide{
+      opacity: 0;
+    }
   }
   
   .progress-message {
     padding: 5px 10px;
     color: white;
     font-size: 14px;
-    opacity: 1;
-    transition: opacity 2s ease;
-  }
-  
-  .progress-message.fade-out {
-    opacity: 0;
   }
 </style>
 <script>
@@ -197,7 +195,7 @@
     // 创建新消息元素
     const messageElement = document.createElement('div');
     messageElement.className = 'progress-message';
-    messageElement.textContent = arg.join(' ');
+    messageElement.textContent = arg.join(',');
     
     // 将新消息添加到容器顶部
     container?.append(messageElement);
