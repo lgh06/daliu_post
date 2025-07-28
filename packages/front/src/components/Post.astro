@@ -86,7 +86,11 @@
     }, 5000);
     let providersJsonObj = await fetch("http://localhost:3047/providers").then(
       (res) => res.json(),
-    );
+    ).catch(r =>{
+      setTimeout(()=>{
+        window.location.reload()
+      },5000)
+    });
     console.log(providersJsonObj);
     Object.keys(providersJsonObj).forEach((providerName) => {
       if (providerName.startsWith("__")) return;
