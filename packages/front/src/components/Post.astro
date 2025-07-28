@@ -77,6 +77,13 @@
     });
   }
   async function main() {
+    setTimeout(()=>{
+      let buttons = document.querySelectorAll(".line.buttons button");
+      console.log("5000 buttons", buttons)
+      if(buttons.length <=1){
+        window.location.reload()
+      }
+    }, 5000);
     let providersJsonObj = await fetch("http://localhost:3047/providers").then(
       (res) => res.json(),
     );
@@ -142,6 +149,7 @@
   import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js";
   const socket = io("ws://localhost:3047/");
   socket.on('progress', (...arg) => {
+    let last = arg.pop();
     console.log(...arg); // 'world'
   });
 </script>
