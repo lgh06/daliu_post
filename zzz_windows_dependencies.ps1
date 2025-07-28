@@ -44,7 +44,7 @@ Write-Host "正在安装 Chrome Beta..."
 Start-Process -FilePath ".\ChromeBetaStandaloneSetup64.exe" -Args "/silent /install"
 Write-Host "Chrome Beta 安装完成"
 Start-Sleep -Seconds 6
-Write-Host "执行完毕 请去 daliu_post_dependencies_$CurrentDateTime 执行run.bat"
+Write-Host "执行完毕 请去 daliu_post_$CurrentDateTime 执行run.bat"
 
 
 # .\"Git-2.50.1-64-bit.exe" /SILENT /VERYSILENT --silent --install
