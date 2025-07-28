@@ -106,6 +106,10 @@ const server = http.createServer({
 io = new Server(server,{
   cors:{
     origin:"*",
+    allowedHeaders:"*",
+    exposedHeaders:"*",
+    credentials: true,
+    maxAge: 3580_000,
   },
   connectionStateRecovery: {},
 });
