@@ -194,7 +194,7 @@
     lastProgressTime = Date.now();
     outContainer?.classList.remove("hide");
 
-    let last = arg.pop();
+    let last = arg.pop(); // SocketIO会在emit时多加一个参数 fix
 
     // 创建新消息元素
     const messageElement = document.createElement('div');
