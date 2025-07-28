@@ -2,6 +2,11 @@
 大刘的自媒体自动化工具。  
 仅依赖Node.js ，Chrome Beta。  
 跨平台运行。支持Windows、MacOS、Linux。  
+支持头条、微博、订阅号、X 等，可以自己在providers中扩展。  
+支持同平台多账户  
+> 例如，`packages/back/auto/providers/weixin_dingyue_personal2.mjs` 由`weixin_dingyue_personal.mjs` 复制而来，
+> 仅 userDataDir配置不同， export的变量名不同。  
+
 服务器版Linux，建议使用docker headless版本的Chrome。请自行修改源码。  
 本项目目前是半成品 仍在开发和构思 中。  
 欢迎小众平台的用户联系我，可以付费开发小众平台的自动发布工具。  
