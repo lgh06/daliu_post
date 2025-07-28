@@ -16,6 +16,7 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "puppeteer-core": "^24.12.1",
+    "socket.io": "^4.8.1",
     "terser": "^5.43.1",
     "zx": "^8.7.1"
   }

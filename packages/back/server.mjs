@@ -5,8 +5,16 @@ import { writeProviderIndex } from './auto/writeProviderIndex.mjs';
 import { networkInterfaces } from 'os';
 import { Buffer } from 'buffer';
 import http from 'node:http';
+import { Server } from 'socket.io';
 
-let wait = (ms=1000) => new Promise((resolve) => {setTimeout(resolve, ms)})
+// let wait = (ms=1000) => new Promise((resolve) => {setTimeout(resolve, ms)})
+
+let serverSendProgressToAllClients = (io, ...str) => {
+  if(io){
+    console.log("serverSendProgressToAllClients", ...str)
+    io.emit("progress", ...str)
+  }
+}
 
 writeProviderIndex();
 
@@ -16,6 +24,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 const port = 3047;
+let io = null;
 
 app.get('/', (req, res) => {
   res.send('see /providers');
@@ -75,6 +84,10 @@ await import('./auto/providers/index.mjs').then((providers) => {
       paramKeyArr?.forEach((key) => {
         paramObj[key] = req.body[key];
       })
+
+      paramObj.progress = (...str)=>{
+        serverSendProgressToAllClients(io,...str);
+      }
   
       // 暂不加 await 也可以正常执行
       providers[providerName]?.main(paramObj);
@@ -84,10 +97,23 @@ await import('./auto/providers/index.mjs').then((providers) => {
 
 })
 
-http.createServer({
+const server = http.createServer({
   keepAlive: true,
   keepAliveTimeout: 3600_000,
-}, app).listen(port, () => {
+}, app)
+
+
+io = new Server(server,{
+  cors:{
+    origin:"*",
+  },
+  connectionStateRecovery: {},
+});
+io.on('connection', (socket) => {
+  console.log('a user connected');
+});
+
+server.listen(port, () => {
   console.log(`API Backend Server running at http://localhost:${port}`);
 });
 
