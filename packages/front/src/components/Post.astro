@@ -3,7 +3,7 @@
 ---
 
 <main>
-  <div id="progress-container">
+  <div id="progress-container" class="hide">
     <div id="progress-messages"></div>
   </div>
   <div class="line">
@@ -72,6 +72,11 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
     overflow: hidden;
+
+    opacity: 1;
+    &.hide{
+      opacity: 0;
+    }
   }
   
   #progress-messages {
@@ -80,10 +85,6 @@
     left: 0;
     right: 0;
     transition: all 0.3s linear;
-    opacity: 1;
-    &.hide{
-      opacity: 0;
-    }
   }
   
   .progress-message {
@@ -185,13 +186,16 @@
   import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js";
   const socket = io("ws://localhost:3047/");
   // 获取消息容器
+  const outContainer = document.getElementById('progress-container');
   const container = document.getElementById('progress-messages');
 
+  let lastProgressTime = 0;
   socket.on('progress', (...arg) => {
+    lastProgressTime = Date.now();
+    outContainer?.classList.remove("hide");
+
     let last = arg.pop();
-    console.log(...arg); // 'world'
-    
-    
+
     // 创建新消息元素
     const messageElement = document.createElement('div');
     messageElement.className = 'progress-message';
@@ -201,4 +205,14 @@
     container?.append(messageElement);
     
   });
+
+  function hideOutContainer(){
+    setInterval(() => {
+      let now = Date.now();
+      if(now - lastProgressTime > 3_000){
+        outContainer?.classList.add("hide")
+      }
+    }, 2_000);
+  }
+  hideOutContainer();
 </script>
