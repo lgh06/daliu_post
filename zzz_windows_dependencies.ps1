@@ -16,9 +16,10 @@ Invoke-WebRequest -Uri $Uri1 -Headers $ReqHeaders -OutFile "daliu_post_$CurrentD
 Write-Host "daliu_post_$CurrentDateTime.zip 下载完成"
 
 Expand-Archive -Path "daliu_post_$CurrentDateTime.zip" -DestinationPath ".\daliu_post_$CurrentDateTime" -Force
-Write-Host "daliu_post_$CurrentDateTime 解压完成"
+Write-Host "daliu_post_$CurrentDateTime 解压完成"  
 
-
+Write-Host "正在下载依赖包，大概160M 请耐心等待 ... ..." 
+Write-Host "如果中途出现错误，请关闭本窗口，重新在 zzz_windows_dependencies.ps1 点击右键 使用PowerShell运行" 
 
 $Uri2 = "https://cnb.cool/lgh06/daliu_post_dependencies/-/git/archive/main.zip"
 Invoke-WebRequest -Uri $Uri2 -Headers $ReqHeaders -OutFile "daliu_post_dependencies_$CurrentDateTime.zip"  
