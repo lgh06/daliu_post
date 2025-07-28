@@ -94,11 +94,6 @@ async function main({title="111", content="222", headless=false, progress}) {
   }
 }
 
-// main({
-//   title: "说说程序员这个行业 这里是标题 测试测试",
-//   content: "你好，我是程序员 这里是内容 测试测试",
-// })
-
 
 let weixin_dingyue_personal = {
   main,
