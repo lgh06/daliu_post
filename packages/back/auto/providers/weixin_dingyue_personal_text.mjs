@@ -18,8 +18,9 @@ async function main({
   content="222", 
   headless=false, 
   autoCommit=false,
+  progress,
 }) {
-    console.log("headless",headless)
+    progress("headless",headless)
 
   let browser = global.browser || await puppeteer.launch({
     ...basicLauchOptions,
@@ -39,17 +40,17 @@ async function main({
     //  需要扫码登录 没有账号就先注册一个个人订阅号
     //  以下代码，仅在个人订阅号上测试通过。其它账号类型不保证有效。
 
-    // 等待 内容管理 四个字 菜单出现
+    progress("等待 内容管理 四个字 菜单出现")
     await page.waitForSelector('#js_index_menu > ul > li.weui-desktop-menu__item.weui-desktop-menu_create > span',{timeout:0});
 
-    // 点击 内容管理 四个字 菜单
+    progress("点击 内容管理 四个字 菜单")
     await page.click('#js_index_menu > ul > li.weui-desktop-menu__item.weui-desktop-menu_create > span');
     
-    // 等待 草稿箱 链接出现
+    progress("等待 草稿箱 链接出现")
     await page.waitForSelector('#js_level2_title > li > ul > li:nth-child(1) > a');
-    // 点击 草稿箱 链接
+    progress("点击 草稿箱 链接")
     await page.click('#js_level2_title > li > ul > li:nth-child(1) > a');
-    // 等待 新的创作 出现
+    progress("等待 新的创作 出现")
     await page.waitForSelector('#js_main div.weui-desktop-card.weui-desktop-card_new > div.weui-desktop-card__inner')
 
 
@@ -69,15 +70,16 @@ async function main({
     await page.click('div.weui-desktop-card.weui-desktop-card_new > div.preview_media_add_panel > ul > li:nth-child(3) > a');
     page = await getNewBrowserTab(browser)
     page.bringToFront()
-    console.log("after getNewBrowserTab")
+    progress("after getNewBrowserTab")
 
 
     // await wait(1 * 3600 * 1000)    
 
     await page.waitForSelector('div#guide_words_main > div > span.share-text__wrp > div.share-text__input.js_pmEditorArea.share-text__input_h > div > span');
-    console.log("after waitForSelector div#guide_words_main > div > span.share-text__wrp > div.share-text__input.js_pmEditorArea.share-text__input_h > div > span")
+    progress("after waitForSelector div#guide_words_main > div > span.share-text__wrp > div.share-text__input.js_pmEditorArea.share-text__input_h > div > span")
     await wait(3000)
     await page.click("div#guide_words_main > div > span.share-text__wrp > div.share-text__input.js_pmEditorArea.share-text__input_h > div > span")
+    progress("准备输入文字")
     await page.keyboard.sendCharacter(content); // 公众号 纯文本 的 内容
 
     if(autoCommit){
@@ -87,7 +89,7 @@ async function main({
     }
 
 
-    console.log("执行完毕 你需要自己点击 保存为草稿 按钮。")
+    progress("执行完毕 你需要自己点击 保存为草稿 按钮。")
 
 
 

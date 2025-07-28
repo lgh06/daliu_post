@@ -6,8 +6,8 @@ let { wait } = autoCommons;
 
 
 
-async function main({content="222",headless=false,autoCommit=false}) {
-  console.log("headless",headless)
+async function main({content="222",headless=false,autoCommit=false,progress}) {
+  progress("headless",headless)
   let browser = global.browser || await puppeteer.launch({
     ...autoCommons.basicLauchOptions,
     headless,
@@ -20,17 +20,17 @@ async function main({content="222",headless=false,autoCommit=false}) {
 
   try {
 
-    // 打开链接
+    progress("打开链接")
     await page.goto('https://mp.toutiao.com/',{waitUntil:'domcontentloaded'});
 
 
-    // 等待 创作-微头条 链接 出现
+    progress("等待 创作-微头条 链接 出现")
     await page.waitForSelector('#masterRoot div.pgc-content div.byte-menu-inline.base_creation_tab div.byte-menu-item:nth-child(3) a',{timeout:0});
     await wait()
-    // 点击 创作-微头条 链接
+    progress("点击 创作-微头条 链接")
     await page.click('#masterRoot div.pgc-content div.byte-menu-inline.base_creation_tab div.byte-menu-item:nth-child(3) a');
 
-    // 等待与点击 文本输入框
+    progress("等待与点击 文本输入框")
     await page.waitForSelector('#root  div.publish-box > div.syl-editor > div.ProseMirror > p:nth-child(1) > span:nth-child(1)')
     await wait()
     await page.click('#root  div.publish-box > div.syl-editor > div.ProseMirror > p:nth-child(1) > span:nth-child(1)')
@@ -44,7 +44,7 @@ async function main({content="222",headless=false,autoCommit=false}) {
     }
 
 
-    console.log("头条-个人-微头条 执行完毕")
+    progress("头条-个人-微头条 执行完毕")
 
 
 

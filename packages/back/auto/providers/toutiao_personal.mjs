@@ -6,7 +6,7 @@ let { wait } = autoCommons;
 
 
 
-async function main({title="111",content="222",headless=false}) {
+async function main({title="111",content="222",headless=false,progress}) {
   console.log("headless",headless)
   let browser = global.browser || await puppeteer.launch({
     ...autoCommons.basicLauchOptions,
@@ -20,30 +20,32 @@ async function main({title="111",content="222",headless=false}) {
 
   try {
 
-    // 打开链接
+    progress("打开链接")
     await page.goto('https://mp.toutiao.com/',{waitUntil:'domcontentloaded'});
 
 
-    // 等待 文本输入框 出现
+    progress("等待 文本输入框 出现")
     await page.waitForSelector('#masterRoot div.pgc-content div.byte-menu-inline.base_creation_tab div.byte-menu-item:nth-child(1) a',{timeout:0});
     await wait()
-    // 点击 文本输入框
+    progress("点击 文本输入框")
     await page.click('#masterRoot div.pgc-content div.byte-menu-inline.base_creation_tab div.byte-menu-item:nth-child(1) a');
 
     await page.waitForSelector('.publish-editor .assistant-title .title-wrapper .publish-editor-title .editor-title')
     await wait()
     await page.click('.publish-editor .assistant-title .title-wrapper .publish-editor-title .editor-title')
     await wait()
+    progress("准备输入标题")
     await page.keyboard.sendCharacter(title)
     await wait()
     await page.waitForSelector('.publish-editor .syl-editor .ProseMirror p')
     await page.click('.publish-editor .syl-editor .ProseMirror p')
     await wait()
+    progress("准备输入内容")
     await page.keyboard.sendCharacter(content)
 
 
 
-    console.log("执行完毕 你需要自己点击 保存为草稿 按钮。")
+    progress("执行完毕 你需要自己点击 保存为草稿 按钮。")
 
 
 
