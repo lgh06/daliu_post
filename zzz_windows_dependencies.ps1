@@ -13,15 +13,19 @@ $ReqHeaders = @{
 $Uri1 = "https://cnb.cool/lgh06/daliu_post/-/git/archive/main.zip"
 Invoke-WebRequest -Uri $Uri1 -Headers $ReqHeaders -OutFile "daliu_post_$CurrentDateTime.zip"
 
+Write-Host "daliu_post_$CurrentDateTime.zip 下载完成"
+
 Expand-Archive -Path "daliu_post_$CurrentDateTime.zip" -DestinationPath ".\daliu_post_$CurrentDateTime" -Force
+Write-Host "daliu_post_$CurrentDateTime 解压完成"
 
 
 
 $Uri2 = "https://cnb.cool/lgh06/daliu_post_dependencies/-/git/archive/main.zip"
 Invoke-WebRequest -Uri $Uri2 -Headers $ReqHeaders -OutFile "daliu_post_dependencies_$CurrentDateTime.zip"  
+Write-Host "daliu_post_dependencies_$CurrentDateTime.zip 下载完成"
 
 Expand-Archive -Path "daliu_post_dependencies_$CurrentDateTime.zip" -DestinationPath ".\daliu_post_dependencies_$CurrentDateTime" -Force
-
+Write-Host "daliu_post_dependencies_$CurrentDateTime 解压完成" 
 
 
 cd  "daliu_post_dependencies_$CurrentDateTime"
@@ -35,10 +39,11 @@ Start-Sleep -Seconds 6
 
 
 # 静默安装 ChromeBetaStandaloneSetup64.exe
+Write-Host "正在安装 Chrome Beta..."
 Start-Process -FilePath ".\ChromeBetaStandaloneSetup64.exe" -Args "/silent /install"
 Write-Host "Chrome Beta 安装完成"
 Start-Sleep -Seconds 6
-
+Write-Host "执行完毕 请去 daliu_post_dependencies_$CurrentDateTime 执行run.bat"
 
 
 # .\"Git-2.50.1-64-bit.exe" /SILENT /VERYSILENT --silent --install
