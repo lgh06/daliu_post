@@ -26,11 +26,12 @@ async function main({
   content="222",
   headless=false,
   autoCommit=false,
+  progress,
 }) {
 
   let processCorpLink =  $`/Applications/CorpLink.app/Contents/MacOS/CorpLink`
   processCorpLink.then( () => {
-    console.log("CorpLink 启动成功")
+    progress("CorpLink 启动成功")
   });
   await wait(5000);
 
@@ -46,23 +47,23 @@ async function main({
 
   try {
 
-    // 打开PDF链接
+    progress("打开链接")
     await page.goto('https://x.com/',{waitUntil:'domcontentloaded'});
 
     //  需要扫码登录 没有账号就先注册一个x个人号
     //  以下代码，仅在x个人号上测试通过。其它账号类型不保证有效。
 
-    // 等待 文本输入框 出现
+    progress("等待 文本输入框 出现")
     await page.waitForSelector('div[data-testid="tweetTextarea_0RichTextInputContainer"]',{timeout:0});
 
-    // 点击 文本输入框
+    progress("点击 文本输入框")
     await page.click('div[data-testid="tweetTextarea_0RichTextInputContainer"]');
     await wait(2000)
     await page.keyboard.sendCharacter(content)
 
     // 自动提交
     if(autoCommit) {
-      console.log("autoCommit", autoCommit)
+      progress("autoCommit", autoCommit)
       await wait(15*1000)
       await page.click(`button[data-testid="tweetButtonInline"]`)
     }
@@ -71,12 +72,12 @@ async function main({
     try {
       await wait(10_000)
       processCorpLink.nothrow(true).kill().then( () => {
-        console.log("CorpLink 关闭成功")
+        progress("CorpLink 关闭成功")
       })
     } catch (error) {
       
     }
-    console.log("X 个人 指尖出海版 执行完毕。")
+    progress("X 个人 指尖出海版 执行完毕。")
 
 
 
