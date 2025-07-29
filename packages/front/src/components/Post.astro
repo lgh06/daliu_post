@@ -157,6 +157,31 @@
     }
   }
   
+  .checkboxes {
+    margin: 0.75rem 0;
+    
+    label {
+      display: flex;
+      align-items: center;
+      font-size: 15px;
+      color: var(--text-color);
+      cursor: pointer;
+      transition: var(--transition);
+      
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
+    
+    input[type="checkbox"] {
+      margin-right: 8px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      accent-color: var(--primary-color);
+    }
+  }
+  
   #progress-container {
     position: fixed;
     bottom: 30px;
