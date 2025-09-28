@@ -12,7 +12,7 @@
 欢迎小众平台的用户联系我，可以付费开发小众平台的自动发布工具。  
 > 微信 mudguy  
 
-有钱的大佬请出门右转，[新榜小豆芽](https://d.newrank.cn/)  
+有钱的大佬请出门右转，[新榜小豆芽](https://d.newrank.cn/) [壹伴](https://yiban.io/) [小V猫](https://baoteyun.com/vcat)  
 源码镜像 https://cnb.cool/lgh06/daliu_post  
 源码打包下载 https://cnb.cool/lgh06/daliu_post/-/git/archive/main.zip
 # 免责声明  
